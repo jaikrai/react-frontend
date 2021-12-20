@@ -1,13 +1,29 @@
-import logo from "./logo.svg";
 import "./App.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import HeraderComponent from "./components/HeraderComponent";
+import ListEmpolyeeComponent from "./components/ListEmpolyeeComponent";
+import FooterComponent from "./components/FooterComponent";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1> Hello World!</h1>
-      </header>
+    <div>
+      <Router>
+        <div className="container">
+          <HeraderComponent />
+          <div className="container">
+            <Routes>
+              <Route path="/" element={<ListEmpolyeeComponent />}></Route>
+              <Route
+                path="/empolyees"
+                caseSensitive={false}
+                element={<ListEmpolyeeComponent />}
+              ></Route>
+              {/* <ListEmpolyeeComponent /> */}
+            </Routes>
+          </div>
+          <FooterComponent />
+        </div>
+      </Router>
     </div>
   );
 }
