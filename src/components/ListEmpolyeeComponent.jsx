@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import EmpolyeeService from "../services/EmpolyeeService";
 
 class ListEmpolyeeComponent extends Component {
@@ -7,6 +8,7 @@ class ListEmpolyeeComponent extends Component {
     this.state = {
       employees: [],
     };
+    this.addEmployee = this.addEmployee.bind(this);
   }
   componentDidMount() {
     // call rest
@@ -14,10 +16,19 @@ class ListEmpolyeeComponent extends Component {
       this.setState({ employees: res.data });
     });
   }
+
+  addEmployee() {
+    this.props.history.push("/add-employee");
+  }
   render() {
     return (
       <div>
-        <h1 className="text-center">Employee</h1>
+        <h1 className="text-center">Employee List</h1>
+        <div className="row">
+          <Link to="createEmployeeComponent" className="btn btn-primary btn-lg">
+            Add Employee
+          </Link>
+        </div>
         <div className="row">
           <table className="table table-striped table=borded">
             <thead>
