@@ -2,13 +2,19 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import EmpolyeeService from "../services/EmpolyeeService";
 
+// // eslint-disable-next-line react-hooks/rules-of-hooks
+// const { navigate } = useNavigate();
 class ListEmpolyeeComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
       employees: [],
     };
-    this.addEmployee = this.addEmployee.bind(this);
+    // this.addEmployee = this.addEmployee.bind(this);
+    this.editEmployee = this.editEmployee.bind(this);
+  }
+  editEmployee(id) {
+    this.props.history.push(`/update-employee/${id}`);
   }
   componentDidMount() {
     // call rest
@@ -20,14 +26,21 @@ class ListEmpolyeeComponent extends Component {
   addEmployee() {
     this.props.history.push("/add-employee");
   }
+  // navigate = useNavigate();
   render() {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+
     return (
       <div>
         <h1 className="text-center">Employee List</h1>
         <div className="row">
-          <Link to="createEmployeeComponent" className="btn btn-primary btn-lg">
+          <button
+            to="/add-employee"
+            onClick={this.addEmployee}
+            className="btn btn-primary btn-lg"
+          >
             Add Employee
-          </Link>
+          </button>
         </div>
         <div className="row">
           <table className="table table-striped table=borded">
@@ -45,6 +58,20 @@ class ListEmpolyeeComponent extends Component {
                   <td>{employee.firstName}</td>
                   <td>{employee.lastName}</td>
                   <td>{employee.email}</td>
+                  <button
+                    // eslint-disable-next-line no-template-curly-in-string
+                    to="/update-employee"
+                    // onClick={() => this.editEmployee(employee.id)}
+                    className="btn btn-info"
+                  >
+                    Update
+                  </button>
+                  <button
+                    onClick={() => this.editEmployee(employee.id)}
+                    className="btn btn-danger"
+                  >
+                    Delete
+                  </button>
                 </tr>
               ))}
             </tbody>

@@ -4,6 +4,7 @@ import HeraderComponent from "./components/HeraderComponent";
 import ListEmpolyeeComponent from "./components/ListEmpolyeeComponent";
 import FooterComponent from "./components/FooterComponent";
 import CreateEmployeeComponent from "./components/CreateEmployeeComponent";
+import UpdateEmployeeComponent from "./components/UpdateEmployeeComponent";
 
 function App() {
   return (
@@ -15,8 +16,12 @@ function App() {
             <Route path="/" exact element={<ListEmpolyeeComponent />}></Route>
             <Route path="employees" element={<ListEmpolyeeComponent />}></Route>
             <Route
-              path="add-empolyee"
+              path="/add-employee"
               element={<CreateEmployeeComponent />}
+            ></Route>
+            <Route
+              path="update-employee"
+              element={<UpdateEmployeeComponent />}
             ></Route>
           </Routes>
         </BrowserRouter>
